@@ -168,4 +168,4 @@ train/
 model.png
 test.csv
 kaggle.json
-tf_vgg16_model_2.keras
+tf_vgg16_model_2.h5
