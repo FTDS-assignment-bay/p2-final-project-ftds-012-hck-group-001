@@ -123,7 +123,7 @@ def run():
     
     fig, ax = plt.subplots(figsize=(10, 6)) 
     ax = sns.countplot(x=opsi2, hue='outcome', data=df, linewidth=2.5)
-    plt.title(f'The Relationship Between {opsi2} and Outcome')
+    plt.title(f'the relationship between {opsi2} and outcome')
     ax.bar_label(ax.containers[0])
     ax.bar_label(ax.containers[1])
     st.pyplot(fig)
