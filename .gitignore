@@ -170,3 +170,4 @@ test.csv
 kaggle.json
 tf_vgg16_model_2.h5
 template.ipynb
+catboost_info/
