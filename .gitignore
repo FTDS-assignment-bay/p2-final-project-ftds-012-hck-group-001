@@ -165,9 +165,11 @@ vehicle-damage-identification.zip
 sol/
 test/
 train/
+dumps/
 model.png
 test.csv
 kaggle.json
 tf_vgg16_model_2.h5
+dt_class_model.pkl
 template.ipynb
 catboost_info/
