@@ -68,7 +68,7 @@ def run():
     st.write('## Dataframe')
 
     # loading dataset
-    df = pd.read_csv('C:/Users/Muhammad Hafidz Adit.DESKTOP-6IPGJGG/Documents/Hacktiv8/Project-Akhir/p2-final-project-ftds-012-hck-group-001/deployment/car_insurance_clean.csv')
+    df = pd.read_csv('car_insurance_clean.csv')
 
     # menampilkan dataframe
     st.dataframe(df)
@@ -145,7 +145,7 @@ def run():
         unsafe_allow_html=True
     )
     st.markdown(
-        "<p class='right-align'>Final Project Group 01</p>",
+        "<p class='right-align'>InsureWise</p>",
         unsafe_allow_html=True
     )
 
