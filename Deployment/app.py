@@ -2,12 +2,18 @@ import streamlit as st
 import eda
 import model
 
-navigasi = st.sidebar.selectbox('Page Selector :', 
-                                ('Home Page','Model Prediksi', 'EDA'))
+# Set page config
+st.set_page_config(
+    page_title = 'InsureWise',
+    initial_sidebar_state = 'expanded'
+)
 
-if navigasi == 'Home Page':
-    st.header('Welcome to InsureWise')
-    st.subheader('Your Trusted Partner for Vehicle Insurance')
+navigasi = st.sidebar.selectbox('Page Selector :', 
+                                ('Home','Claim Predictor', 'EDA'))
+
+if navigasi == 'Home':
+    st.title('Welcome to InsureWise!')
+    st.header('Your Trusted Partner for Vehicle Insurance')
 
     st.image('https://r2.easyimg.io/8zf0odixl/insurewise.png', use_column_width=True)
 
@@ -32,11 +38,11 @@ if navigasi == 'Home Page':
     st.write('Thank you for visiting our homepage.')
     st.write('Please explore our menu options to access additional features, such as Exploratory Data Analysis (EDA) or Insurance Prediction.')
     
-    st.caption('Developed by: Angger Rizky Firdaus, Basyira Sabita, Muhammad Hafidz Adityaswara')
+    st.caption('Coded and Analyzed by - **Angger Rizky Firdaus**, **Basyira Sabita**, **Muhammad Hafidz Adityaswara**')
 
 
 
-elif navigasi == 'Model Prediksi':
+elif navigasi == 'Claim Predictor':
     model.run()
 else :
     eda.run()

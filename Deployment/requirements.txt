@@ -3,3 +3,6 @@ matplotlib
 pickleshare
 plotly
 scikit-learn==1.3.0
+xgboost==2.0.3
+tensorflow==2.15.0
+tensorflow-hub==0.16.1
