@@ -171,5 +171,10 @@ test.csv
 kaggle.json
 tf_vgg16_model_2.h5
 dt_class_model.pkl
+xgb_base_model.pkl
+catb_base_model.pkl
+model.pkl
 template.ipynb
 catboost_info/
+Deployment/__pycache__/eda.cpython-311.pyc
+Deployment/__pycache__/model.cpython-311.pyc
