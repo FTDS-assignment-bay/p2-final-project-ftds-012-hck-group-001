@@ -2,11 +2,19 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
+import tensorflow_hub as hub
+import matplotlib.pyplot as plt
+
+from PIL import Image
+import tensorflow as tf
+from tensorflow.keras.models import load_model
+
 
  #load model
-with open('model.pkl', 'rb') as file:
-        model = pickle.load(file)
-
+with open('dt_class_model.pkl', 'rb') as file:
+        model1 = pickle.load(file)
+model2 = tf.keras.models.load_model('tf_vgg16_model_2.h5')
     
 def run():
     st.title('InsureWise Cam')
@@ -50,6 +58,16 @@ def run():
         'No': 0
     }
     
+    def predict_damage(image):
+        # Process image and predict damage type using the second model
+        image = tf.keras.utils.load_img(image, target_size=(224, 224))
+        x = tf.keras.utils.img_to_array(image)
+        x = np.expand_dims(x, axis=0)
+        classes = model2.predict(x)
+        predicted_class_index = np.argmax(classes, axis=1)[0]
+        labels = ['crack', 'dent', 'glass shatter', 'lamp broken', 'scratch', 'tire flat']
+        predicted_class = labels[predicted_class_index]
+        return predicted_class
 
     with st.form('form'):
         ID = st.text_input('customer ID')
@@ -69,9 +87,12 @@ def run():
         speeding_violations = st.number_input('Speeding Violations', value=0,step=1)
         duis = st.number_input('Driving Under the Influence', value=0,step=1)
         past_accidents = st.number_input('Past Accidents', value=0,step=1)
-    
+        file = st.file_uploader("Upload an image", type=["jpg", "png"])
+        submit = st.form_submit_button('Predicting customer reimbursement')
 
 
+    if submit:
+        prediction = predict_damage(file)
         data_baru = {
             'Employee ID': ID,
             'Age': age,
@@ -90,19 +111,14 @@ def run():
             'Speeding Violations': speeding_violations,
             'DUIs': duis,
             'Past Accidents': past_accidents,
-            'Issue': issue
+            'Issue': prediction
         }
                             
 
-    data_inf = pd.DataFrame([data_baru])
-    st.dataframe(data_inf)
-
-
-
-    if submit:
-            score = model.predict(data_inf)
-            st.write('# Skor Burn Out :', str(float(score)))
-            st.write('Semakin Tinggi Skor = Semakin Burn Out (Range 0 hingga 1)')
+        data_inf = pd.DataFrame([data_baru])
+        st.dataframe(data_inf)
+        score = model1.predict(data_inf)
+        st.write(score)
             
 
 
